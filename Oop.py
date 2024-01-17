@@ -4,7 +4,9 @@ class Roi_calc():
     def __init__(self):
         self.income = 0
         self.expenses = 0
+        self.cashflow = 0
         self.investment = 0
+        self.cashoncashroi= 0
 
 #What are you charging for rent, pet fee, wifi
     def get_income(self):
@@ -31,18 +33,57 @@ class Roi_calc():
         
         print(f'The total monlthy expenses are {self.expenses}')
 
-        # This is ROI, how much did you earn minus how much you spent
-    def get_capital(self):
+        #monthly total cashflow spent
+    def get_cashflow(self):
         self.get_income()
         self.get_expenses()
         total_reward = self.get_expenses - self.get_income
+        
         print(f' The total capital is {total_reward}')
+
+        annualcashflow = total_reward * 12
+
+        return annualcashflow
+
         #Total amount you made in profit
 
+        # This is ROI, how much did you earn minus how much you spent
+    def get_investment(self):
+        downpayment = input('Total amount put down')
+        closingcosts = input('Total amount contributed to closing costs')
+        rehab = input('Total amount to repair')
+        other = input('Total amount for other expenses')
+
+        investment= downpayment + closingcosts+ rehab + other
+        print(f' The total investment is {self.investment}')
+        return investment
+
+    def get_cashoncashroi(self):
+
+        roi = self.annualcashflow / self.investment *100
+        print(f' The total ROI is {self.roi}')
+        return roi
+        
+        
+        #Total amount you made in profit
+
+    def runner(self):    
+        while True:
+            user_input= input('Do you want to do : Loan Details/Income/Expenses/Cash Flow/Delete or Quit?')
+            if user_input == 'Income':
+                roi_total.get_income ()
+            if user_input == 'Loan Details':
+                roi_total.get_investment()
+            if user_input == 'Expenses':
+                roi_total.get_expenses()
+            if user_input == 'Cash Flow':
+                roi_total.get_cashflow()
+            if user_input == 'ROI':
+                roi_total.get_cashoncashroi()
+            if user_input == 'Delete or Quit':
+                break
 #maybe an if statement here
         
-        #if
-        #elif
 
         roi_total = Roi_calc()
         roi_total.runner()
